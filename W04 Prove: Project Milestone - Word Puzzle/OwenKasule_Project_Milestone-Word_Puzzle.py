@@ -16,7 +16,7 @@ def generate_hint(guess, secret):
             hint[i] = char.lower()  # Correct letter in the wrong position
     return " ".join(hint)
 
-print("Welcome to the Word Puzzle Game!")
+print("Welcome to the Word Puzzle Game.")
 print(f"Guess the secret word. It has {len(secret_word)} letters.")
 
 guess_count = 0
@@ -27,11 +27,11 @@ while user_guess != secret_word:
     guess_count += 1
 
     if len(user_guess) != len(secret_word):
-        print("Your guess must have the same number of letters as the secret word.")
+        print("Wrong, your guess must have the same number of letters as the secret word.")
         continue
 
     if user_guess == secret_word:
-        print(f"Congratulations! You've guessed the word '{secret_word}' correctly in {guess_count} guesses.")
+        print(f"Kudos, You've guessed the word '{secret_word}' correctly in {guess_count} guesses.")
         break
     else:
         hint = generate_hint(user_guess, secret_word)
