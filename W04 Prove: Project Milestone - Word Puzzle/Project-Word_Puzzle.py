@@ -1,9 +1,9 @@
-# Additional creativity: Implemented a difficulty setting that influences the number of guesses allowed.
+# Program: Word Puzzle || Owen Muhereza || 01/02/2024
 # This adds an extra layer of challenge and customization for the player.
 
 import random
 
-print("\nWelcome to the word guessing game!")
+print("\nWelcome to the word guessing game")
 print("A secret word has been chosen, and you must guess it letter by letter.")
 print("Hints will be provided based on your guesses.")
 
@@ -45,7 +45,7 @@ while not correct_guess:
     # Check if the guess is correct
     if guess == secret_word:
         correct_guess = True
-        print("\nCongratulations! You've guessed the word correctly!")
+        print("\nCongratulations! You've guessed the word correctly")
     else:
         # Provide updated hint
         print("Your hint is:", " ".join(hint))
