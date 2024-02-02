@@ -1,58 +1,53 @@
 # Program: Word Puzzle || Owen Muhereza || 01/02/2024
-# This adds an extra layer of challenge and customization for the player.
+# This program selects a secret word randomly from a list and provides enhanced hints according to the user's guesses. It includes guess length verification and displays hints following specific rules for underscores, lowercase, and uppercase letters.
 
 import random
 
-print("\nWelcome to the word guessing game")
-print("A secret word has been chosen, and you must guess it letter by letter.")
-print("Hints will be provided based on your guesses.")
+# Welcome message and creative element description
+print("\nWelcome to the advanced word guessing game")
+print("Guess the secret word. After each guess, you'll receive hints to guide you")
 
 # List of secret words for variability
 secret_words = ["mosiah", "enigma", "puzzle", "cipher", "decode"]
-# Randomly select a secret word
-secret_word = random.choice(secret_words).lower()
-hint = ['_'] * len(secret_word)  # Initial hint setup
+secret_word = random.choice(secret_words).lower()  # Randomly select and lowercase the secret word
 
-guess_count = 0  # To track the number of guesses
-correct_guess = False
+# Initialize variables for hints and guess count
+hint = ['_'] * len(secret_word)
+guess_count = 0
+incorrect_length_guess_count = 0  # Track guesses of incorrect length
 
-def generate_hint(guess, secret_word):
-    '''Generates and returns a hint based on the guess and the secret word.'''
-    new_hint = ""
-    for i, char in enumerate(guess):
-        if char == secret_word[i]:
-            new_hint += char.upper()  # Correct letter, correct position
-        elif char in secret_word:
-            new_hint += char.lower()  # Correct letter, wrong position
-        else:
-            new_hint += "_"  # Letter not in word
-    return new_hint
+# Display the initial hint
+print("Your initial hint is: " + ' '.join(hint))
 
-# Displaying the initial hint
-print("Your hint is:", " ".join(hint))
+# Function to update hint based on user's guess
+def update_hint(guess, secret_word, hint):
+    for i, letter in enumerate(guess):
+        if letter == secret_word[i]:
+            hint[i] = letter.upper()  # Correct letter at correct position
+        elif letter in secret_word:
+            hint[i] = letter.lower()  # Correct letter at wrong position
+    return hint
 
-while not correct_guess:
-    guess = input("\nPlease enter your guess: ").lower()
+# Main game loop
+while ''.join(hint).lower() != secret_word:
+    guess = input("\nWhat is your guess? ").lower()
     
-    # Verify guess length
     if len(guess) != len(secret_word):
-        print("The guess must be the same length as the secret word.")
+        print(f"Hint is not displayed as the guess length ({len(guess)}) does not match the secret word length ({len(secret_word)}).")
+        incorrect_length_guess_count += 1
         continue
     
-    guess_count += 1  # Counting all guesses, including incorrect lengths
-    hint = generate_hint(guess, secret_word)
+    guess_count += 1
+    hint = update_hint(guess, secret_word, list(hint))
     
-    # Check if the guess is correct
-    if guess == secret_word:
-        correct_guess = True
-        print("\nCongratulations! You've guessed the word correctly")
-    else:
-        # Provide updated hint
-        print("Your hint is:", " ".join(hint))
+    # Display updated hint
+    print("Your hint is: " + ' '.join(hint))
     
-print(f"It took you {guess_count} guesses.")
+    # Check if the user has correctly guessed the secret word
+    if ''.join(hint).lower() == secret_word:
+        print(f"\nCongratulations, You guessed the secret word '{secret_word}' correctly")
+        print(f"It took you {guess_count} guesses, with {incorrect_length_guess_count} incorrect length guesses.")
+        break
 
-# Here, additional creativity could involve:
-# - Adding difficulty levels that affect the number of allowed guesses or provide partial hints.
-# - Incorporating a feature where the user can request an additional hint at the cost of extra guesses.
-# - Using a broader list of words or importing a word list from an external source for greater variability.
+# End, thanks for playing.
+
