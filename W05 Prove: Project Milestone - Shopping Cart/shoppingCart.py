@@ -1,4 +1,4 @@
-#W04 W05 Prove: Project Milestone - Shopping Cart || Muhereza Owen Kasule|| 1/02/202
+#W05 Prove: Project Milestone - Shopping Cart || Muhereza Owen Kasule|| 1/02/202
 def main():
     # Welcome message and menu
     print("Welcome to the Super Shopping Cart2")
