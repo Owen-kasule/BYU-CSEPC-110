@@ -1,11 +1,12 @@
-#W05 Prove: Project Milestone - Shopping Cart || Muhereza Owen Kasule|| 18/02/202
+#W05 Prove: Project Milestone - Shopping Cart Final || Muhereza Owen Kasule|| 19/02/202
 def main():
-    # Welcome message and menu
-    print("Welcome to the Super Shopping Cart2")
+    print("Welcome to the **Super Shopping Cart**.\n")
+
+    # Initialize and display menu
+    cart = {"items": [], "prices": []}
     display_menu()
 
     # Main loop
-    cart = {"items": [], "prices": []}  # Dictionary to store items and prices
     while True:
         choice = get_user_choice()
         handle_choice(choice, cart)
@@ -39,12 +40,20 @@ def handle_choice(choice, cart):
     elif choice == 4:
         compute_total(cart)
     elif choice == 5:
-        print("Thank you. Goodbye")
+        print("Thank you. Goodbye!")
         exit()
 
 def add_item(cart):
     item_name = input("Enter item name: ")
-    price = float(input("Enter price (e.g., 12.99): "))
+    while True:
+        try:
+            price = float(input("Enter price (e.g., 12.99): "))
+            if price > 0:
+                break
+            else:
+                print("Invalid price. Please enter a positive number.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
     cart["items"].append(item_name)
     cart["prices"].append(price)
     print(f"'{item_name}' added to cart for ${price:.2f}.")
@@ -55,7 +64,7 @@ def view_cart(cart):
     else:
         print("\nYour shopping cart:")
         for i, item in enumerate(cart["items"], 1):
-            price = cart["prices"][i - 1]  # Subtract 1 from i
+            price = cart["prices"][i - 1]
             print(f"{i}. {item} - ${price:.2f}")
 
 def remove_item(cart):
