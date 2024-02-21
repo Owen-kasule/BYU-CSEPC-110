@@ -1,4 +1,4 @@
-#W06 Prove: Project - Data Analysis Final || Muhereza Owen Kasule|| 21/02/2024
+# W06 Prove: Project - Data Analysis Final || Muhereza Owen Kasule|| 21/02/2024
 # This Python script analyzes life expectancy data from a CSV file.
 # It provides overall minimum and maximum life expectancy, and allows the user to analyze data for a specific year.
 # The user can input a year of interest and the program will output the average, minimum, and maximum life expectancy for that year.
